@@ -12,13 +12,13 @@ try:
 except:
     print("no folder for flipped images was found")
 
+#Create folder to store flipped images
 try: 
-    os.mkdir(path_prefix + 'flipped/IMG/')
-    
+    os.mkdir(path_prefix + 'flipped/IMG/')  
 except OSError:  
     print ("Creation of the directory %s failed" % path_prefix + 'flipped/IMG/')
 
-
+#Load data from csv file
 samples = []
 with open(path_prefix + 'driving_log.csv') as csvfile:
     reader = csv.reader(csvfile)
@@ -37,25 +37,17 @@ import matplotlib.pyplot as plt
 import matplotlib.image as mpimg
 import cv2
 
-#path_prefix = 'data/data/'
-print(samples[0][0])
+#Test flipping
 img=mpimg.imread(path_prefix + samples[0][0])
-#plt.imshow(img)
-#plt.show()
-
 image_flipped = np.fliplr(img)
-#plt.imshow(image_flipped)
-#print(image_flipped.shape)
-#plt.show()
 
-#print(path_prefix + 'IMG_flipped/' + samples[0][0])
-#cv2.imwrite(path_prefix + 'flipped/' + samples[0][1],cv2.cvtColor(image_flipped, cv2.COLOR_BGR2RGB) )
-
+#Flip and save images to folder
 for sample in samples:
     img=mpimg.imread(path_prefix + sample[0])
     image_flipped = np.fliplr(img)
     cv2.imwrite(path_prefix + 'flipped/' + sample[0], cv2.cvtColor(image_flipped, cv2.COLOR_BGR2RGB))
 print('Flipped Images saved')
+
 #============================Divide data in train and test samples======================
 from sklearn.model_selection import train_test_split
 train_samples, validation_samples = train_test_split(samples, test_size=0.2)
@@ -87,7 +79,6 @@ print("number of samples: ", np.array(img_paths_train).shape)
 print("number of samples: ", np.array(angles_train).shape)
 
 #============================Augment Data using flipped images=======================
-
 for sample in train_samples:
     img_paths_train.append(path_prefix+'flipped/' + sample[0].strip())
     angles_train.append(-float(sample[3]))
@@ -96,6 +87,7 @@ print('Data Augmented flipped')
 print("number of samples: ", np.array(img_paths_train).shape)
 print("number of samples: ", np.array(angles_train).shape)
 print(img_paths_train[0])
+
 #=================Put Validation data into img_path and angles lists==================
 # Validation imgs - create vectors
 img_paths_validation = []
