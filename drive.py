@@ -12,9 +12,9 @@ from PIL import Image
 from flask import Flask
 from io import BytesIO
 
-from keras.models import load_model
+from tensorflow.keras.models import load_model
 import h5py
-from keras import __version__ as keras_version
+from tensorflow.keras import __version__ as keras_version
 
 sio = socketio.Server()
 app = Flask(__name__)
@@ -44,7 +44,7 @@ class SimplePIController:
 
 
 controller = SimplePIController(0.1, 0.002)
-set_speed = 9
+set_speed = 30
 controller.set_desired(set_speed)
 
 
