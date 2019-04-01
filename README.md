@@ -1,6 +1,8 @@
 # **Behavioral Cloning** 
 
-### In this project, a behavioral cloning approach to self driving on udacity's simulator is presented
+### In this project, a behavioral cloning approach to self driving on udacity's simulator is presented. Video of the results obtained can be found on 
+* [Project](https://youtu.be/0f6uDj9qVY8)
+* [Challenge](https://youtu.be/mMK2-LdYSXQ)
 
 ---
 
@@ -51,6 +53,7 @@ Using [udacity's simulator](https://github.com/udacity/self-driving-car-sim) dat
 * Data is captured clockwise and counter-clockwise in order to avoid overfitting.
 * Data is captured on both sample tracks.
 * Data of recovery behavior (i.e. when the robot is getting out of the track and comes back to the center) is captured.
+* When a model seems to fail recurrently on a certain part of the track, recording more data in that part turned out to be a good solution in most cases
 
 ### Image preprocessing:
 ## 1. Data Augmentation
@@ -180,4 +183,4 @@ train_samples, validation_samples = train_test_split(samples, test_size=0.2)
 
 In the following links you can find the videos corresponding to the performance of the model on both tracks (challenge was completed after recording a little of data on the second track):
 * [Project](https://youtu.be/0f6uDj9qVY8)
-* [Challenge](https://arxiv.org/pdf/1604.07316.pdf)
+* [Challenge](https://youtu.be/mMK2-LdYSXQ)
